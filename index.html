@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Keeper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <script src="base.js" defer></script>
+</head>
+<body class="min-h-screen">
+
+<div id="site-header"></div>
+
+<!-- Hero -->
+<section class="max-w-6xl mx-auto mb-12 px-4">
+  <div class="hero-section rounded-3xl p-12 text-center relative">
+    <div class="relative z-10">
+      <h2 class="text-5xl md:text-6xl font-bold mb-6 text-gray-800" style="font-family:'Fredoka',sans-serif;">Memory Keeper</h2>
+      <p class="text-xl md:text-2xl mb-4 text-gray-600" style="font-family:'Fredoka',sans-serif;font-weight:400;">Where childhood moments become lasting memories</p>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto space-y-12 px-4">
+
+  <!-- Parent Login Banner -->
+  <section class="section-card p-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl p-6 sm:p-8 lg:p-10 text-white shadow-2xl">
+      <div class="text-center sm:text-left mb-6 sm:mb-0 flex-1">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">Hello Parents!</h2>
+        <p class="text-purple-100 text-sm sm:text-base lg:text-lg max-w-md mx-auto sm:mx-0">Keep your memories and order your prints with just a click</p>
+        <div class="hidden sm:flex items-center mt-4 text-purple-200">
+          <i class="fas fa-shield-alt mr-2"></i>
+          <span class="text-sm">Secure &amp; Private Access</span>
+        </div>
+      </div>
+      <div class="flex-shrink-0">
+        <a href="login.html" class="inline-flex items-center bg-white text-purple-600 hover:text-purple-700 font-semibold py-3 sm:py-4 px-6 sm:px-8 lg:px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base lg:text-lg">
+          <i class="fas fa-user-circle mr-2 sm:mr-3 text-lg sm:text-xl"></i>
+          <span>Parent Login</span>
+          <i class="fas fa-arrow-right ml-2 sm:ml-3 text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section-card p-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Products</h2>
+    <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <!-- Loaded by JS -->
+      <div class="col-span-full text-center py-8 text-gray-400">
+        <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+        <p>Loading products…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <section class="section-card p-8">
+      <div class="text-center mb-6">
+        <i class="fas fa-eye text-4xl text-purple-600 mb-4"></i>
+        <h2 class="text-2xl font-bold text-gray-800">Our Vision</h2>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">To create a world where every child's school memories are beautifully preserved through exceptional photography that captures their unique spirit and journey through education.</p>
+    </section>
+    <section class="section-card p-8">
+      <div class="text-center mb-6">
+        <i class="fas fa-bullseye text-4xl text-purple-600 mb-4"></i>
+        <h2 class="text-2xl font-bold text-gray-800">Our Mission</h2>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">To provide schools and families with the highest quality photography services that are affordable, convenient, and delivered with exceptional customer service and attention to detail.</p>
+    </section>
+  </div>
+
+  <!-- Why Choose Us -->
+  <section class="section-card p-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Why Choose Memory Keeper?</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center p-6 bg-purple-50 rounded-2xl">
+        <i class="fas fa-award text-3xl text-purple-600 mb-4"></i>
+        <h3 class="font-semibold text-lg mb-2">Professional Quality</h3>
+        <p class="text-gray-700">Award-winning photographers with years of experience</p>
+      </div>
+      <div class="text-center p-6 bg-purple-50 rounded-2xl">
+        <i class="fas fa-child text-3xl text-purple-600 mb-4"></i>
+        <h3 class="font-semibold text-lg mb-2">Child-Friendly</h3>
+        <p class="text-gray-700">Patience and fun approach that kids love</p>
+      </div>
+      <div class="text-center p-6 bg-purple-50 rounded-2xl">
+        <i class="fas fa-truck text-3xl text-purple-600 mb-4"></i>
+        <h3 class="font-semibold text-lg mb-2">Fast Delivery</h3>
+        <p class="text-gray-700">Quick turnaround without compromising quality</p>
+      </div>
+      <div class="text-center p-6 bg-purple-50 rounded-2xl">
+        <i class="fas fa-shield-alt text-3xl text-purple-600 mb-4"></i>
+        <h3 class="font-semibold text-lg mb-2">Quality Guarantee</h3>
+        <p class="text-gray-700">100% satisfaction guarantee on all our work</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section-card p-8">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-3xl font-bold mb-4 colorful-text">About Memory Keeper</h3>
+        <p class="text-gray-600 mb-4 leading-relaxed">At Memory Keeper, we specialize in capturing the precious moments of school life. From class photos to graduation ceremonies, we preserve the memories that families will treasure forever.</p>
+        <p class="text-gray-600 mb-6 leading-relaxed">Our professional photography services ensure every smile, every achievement, and every milestone is beautifully documented for years to come.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="text-center p-4 bg-lime-50 rounded-lg">
+            <i class="fas fa-camera text-2xl text-lime-600 mb-2"></i>
+            <div class="font-semibold text-gray-800">Professional</div>
+            <div class="text-sm text-gray-600">Equipment</div>
+          </div>
+          <div class="text-center p-4 bg-pink-50 rounded-lg">
+            <i class="fas fa-heart text-2xl text-pink-600 mb-2"></i>
+            <div class="font-semibold text-gray-800">Memory</div>
+            <div class="text-sm text-gray-600">Focused</div>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="w-full h-80 bg-gradient-to-br from-purple-400 to-lime-400 rounded-2xl shadow-lg flex items-center justify-center">
+          <i class="fas fa-camera text-white text-8xl opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script>
+async function loadProducts() {
+  const grid = document.getElementById('products-grid');
+  try {
+    // Fetch products from Supabase
+    const res = await fetch('products.json');
+    const products = await res.json();
+
+    if (!products.length) {
+      grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-600"><p>No products available at the moment.</p></div>';
+      return;
+    }
+
+    grid.innerHTML = products.map(p => {
+      const images = p.images || [];
+      const primaryImg = images.find(i => i.primary) || images[0];
+      return `
+        <div class="product-card bg-white p-6 rounded-2xl shadow-lg text-center">
+          ${primaryImg
+            ? `<div class="overflow-hidden rounded-xl mb-4"><img src="${primaryImg.url}" alt="${primaryImg.alt || p.name}" class="w-full h-48 object-cover rounded-xl hover:scale-105 transition-transform duration-500" loading="lazy"></div>`
+            : `<div class="w-full h-48 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl mb-4 flex items-center justify-center"><i class="fas fa-image text-white text-4xl"></i></div>`
+          }
+          <h3 class="text-xl font-semibold mb-2">${p.name}</h3>
+          <p class="text-gray-600 mb-4">${p.description || ''}</p>
+          <p class="text-purple-600 font-bold text-lg">${p.price} EGP</p>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    // Fallback: show placeholder cards if Supabase not configured yet
+    grid.innerHTML = `
+      ${['Individual Portrait','Class Photo','School Package'].map((name,i) => `
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg text-center">
+        <div class="w-full h-48 bg-gradient-to-r from-purple-${4+i}00 to-pink-${4+i}00 rounded-xl mb-4 flex items-center justify-center">
+          <i class="fas fa-camera text-white text-4xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">${name}</h3>
+        <p class="text-gray-600 mb-4">Beautiful photography package for your child</p>
+      </div>`).join('')}`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
+</body>
+</html>

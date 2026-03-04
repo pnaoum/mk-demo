@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Memory Keeper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+</head>
+<body class="min-h-screen">
+
+<div id="site-header"></div>
+
+<section class="max-w-6xl mx-auto mb-8 px-4 pt-4">
+  <div class="hero-section rounded-3xl p-10 text-center relative">
+    <div class="relative z-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800" style="font-family:'Fredoka',sans-serif;">Complete Your Order</h2>
+      <p class="text-xl text-gray-600" style="font-family:'Fredoka',sans-serif;">Just a few more details and you're done!</p>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 pb-16">
+  <section class="section-card p-8">
+    <div class="grid lg:grid-cols-2 gap-12">
+
+      <!-- Order Summary -->
+      <div>
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800">Order Summary</h3>
+          <span class="text-sm text-gray-600"><i class="fas fa-shopping-cart mr-1"></i><span id="item-count">0</span> items</span>
+        </div>
+        <div id="order-items" class="space-y-4 mb-6 max-h-96 overflow-y-auto"></div>
+        <div class="border-t pt-4 space-y-3">
+          <div class="flex justify-between">
+            <span class="font-semibold">Subtotal:</span>
+            <span class="font-semibold" id="summary-subtotal">0 EGP</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-semibold">Processing Fee:</span>
+            <span class="font-semibold">0.00 EGP</span>
+          </div>
+          <div class="border-t pt-3 flex justify-between">
+            <span class="text-xl font-bold">Total:</span>
+            <span class="text-2xl font-bold text-purple-600" id="summary-total">0 EGP</span>
+          </div>
+        </div>
+        <div class="mt-6 pt-6 border-t">
+          <a href="cart.html" class="text-purple-600 hover:text-purple-800 font-semibold text-sm">
+            <i class="fas fa-edit mr-2"></i>Edit Cart
+          </a>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-6">Order Details</h3>
+
+        <div id="msg-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 mb-6">
+          <i class="fas fa-exclamation-circle mr-2"></i><span id="msg-error-text"></span>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Student code (readonly) -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Child's School Code</label>
+            <input type="text" id="student-code" disabled
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-100 text-gray-700">
+            <p class="text-sm text-gray-500 mt-1">Linked to your login session.</p>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Parent's Email *</label>
+            <input type="email" id="parent-email" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+              placeholder="your.email@example.com">
+            <div id="email-error" class="text-sm text-red-600 mt-1 hidden"></div>
+            <p class="text-sm text-gray-500 mt-1">We'll send order confirmation to this email</p>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Phone Number *</label>
+            <input type="tel" id="parent-phone" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+              placeholder="+20 123 456 7890">
+            <div id="phone-error" class="text-sm text-red-600 mt-1 hidden"></div>
+            <p class="text-sm text-gray-500 mt-1">For any questions about your order</p>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Special Requests or Questions</label>
+            <textarea id="special-requests"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all h-32"
+              placeholder="Any special requests or questions about your order…"></textarea>
+          </div>
+
+          <!-- Payment Method Info -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-4">Payment Method</label>
+            <div class="flex items-start p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
+              <i class="fas fa-info-circle text-blue-600 text-xl mr-3 mt-0.5"></i>
+              <div>
+                <h4 class="font-semibold text-gray-800 mb-1">Instapay or Bank Transfer</h4>
+                <p class="text-sm text-gray-600">After order confirmation, you will receive all necessary payment details.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms -->
+          <div class="flex items-start space-x-3">
+            <input type="checkbox" id="terms" class="mt-1 w-5 h-5 accent-purple-600">
+            <label for="terms" class="text-sm text-gray-700">
+              I agree that my order information will be used to process this photography order and that all sales are final once confirmed.
+            </label>
+          </div>
+          <div id="terms-error" class="text-sm text-red-600 hidden"></div>
+
+          <button id="submit-btn" onclick="submitOrder()"
+            class="btn-primary text-white px-8 py-4 rounded-xl font-semibold text-lg w-full">
+            <i class="fas fa-check-circle mr-2"></i>
+            <span id="btn-text">Place Order</span>
+            <i class="fas fa-spinner fa-spin ml-2 hidden" id="btn-spinner"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="base.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+
+  const student = Auth.getStudent();
+  if (student) document.getElementById('student-code').value = student.student_number || student.id;
+
+  const items = Cart.get();
+  if (!items.length) { window.location.href = 'cart.html'; return; }
+
+  document.getElementById('item-count').textContent = Cart.count();
+  document.getElementById('order-items').innerHTML = items.map(item => `
+    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+      <div class="flex items-center space-x-3">
+        ${item.image
+          ? `<img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded-lg">`
+          : `<div class="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center"><i class="fas fa-image text-white text-sm"></i></div>`
+        }
+        <div>
+          <h4 class="font-semibold text-sm">${item.name}</h4>
+          <p class="text-xs text-gray-600">Qty: ${item.quantity} × ${item.price} EGP</p>
+        </div>
+      </div>
+      <span class="font-bold text-purple-600">${item.price * item.quantity} EGP</span>
+    </div>`).join('');
+
+  const total = Cart.total();
+  document.getElementById('summary-subtotal').textContent = `${total} EGP`;
+  document.getElementById('summary-total').textContent = `${total} EGP`;
+});
+
+async function submitOrder() {
+  // Validate
+  const email = document.getElementById('parent-email').value.trim();
+  const phone = document.getElementById('parent-phone').value.trim();
+  const terms = document.getElementById('terms').checked;
+  let valid = true;
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showFieldError('email-error', 'Please enter a valid email address.'); valid = false;
+  } else clearFieldError('email-error');
+
+  if (!phone || !/^[\+]?[\d\s\-\(\)]{10,}$/.test(phone)) {
+    showFieldError('phone-error', 'Please enter a valid phone number.'); valid = false;
+  } else clearFieldError('phone-error');
+
+  if (!terms) {
+    showFieldError('terms-error', 'You must agree to the terms and conditions.'); valid = false;
+  } else clearFieldError('terms-error');
+
+  if (!valid) {
+    document.getElementById('msg-error-text').textContent = 'Please fix the errors above and try again.';
+    document.getElementById('msg-error').classList.remove('hidden');
+    return;
+  }
+
+  document.getElementById('msg-error').classList.add('hidden');
+  setLoading(true);
+
+  const student = Auth.getStudent();
+  const items = Cart.get();
+  const specialRequests = document.getElementById('special-requests').value.trim();
+
+  // Generate a local order ID and save for the success page
+  const orderId = 'MK-' + Date.now().toString(36).toUpperCase();
+
+  sessionStorage.setItem('mk_last_order', JSON.stringify({
+    id: orderId,
+    student: student.full_name,
+    school: student.school || '',
+    email,
+    total: Cart.total(),
+    special_requests: specialRequests
+  }));
+
+  Cart.clear();
+  window.location.href = 'order-success.html';
+}
+
+function setLoading(on) {
+  document.getElementById('submit-btn').disabled = on;
+  document.getElementById('btn-text').textContent = on ? 'Processing…' : 'Place Order';
+  document.getElementById('btn-spinner').classList.toggle('hidden', !on);
+}
+function showFieldError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.classList.remove('hidden');
+}
+function clearFieldError(id) {
+  document.getElementById(id).classList.add('hidden');
+}
+</script>
+</body>
+</html>

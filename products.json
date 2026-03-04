@@ -1,0 +1,144 @@
+[
+  {
+    "id": 67,
+    "name": "Digital Class Photo",
+    "description": "High-quality digital image download + free funny photo",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Digital_Class_Photo.jpeg",
+        "primary": true,
+        "alt": "Digital Class Photo"
+      }
+    ],
+    "price": 100
+  },
+  {
+    "id": 1,
+    "name": "Digital Portrait Photo",
+    "description": "High-quality digital image download (portrait only \u2013 NO PRINT)",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Digital_Portrait.jpg",
+        "primary": true,
+        "alt": "Digital Portrait Photo"
+      }
+    ],
+    "price": 100
+  },
+  {
+    "id": 69,
+    "name": "Digital Whole School Photo",
+    "description": "High-quality digital image download (Whole school photo only \u2013 NO PRINT)",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Whole_school.jpeg",
+        "primary": true,
+        "alt": "Digital Whole School Photo"
+      }
+    ],
+    "price": 100
+  },
+  {
+    "id": 38,
+    "name": "Family Package",
+    "description": "8 Portraits, 4\u00d76 cm printed photos, and 2 Portraits, 13\u00d718 cm, two wooden frames ready to display at home.",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Family_Pack.jpeg",
+        "primary": true,
+        "alt": "Family Package"
+      }
+    ],
+    "price": 400
+  },
+  {
+    "id": 35,
+    "name": "Lifetime Album",
+    "description": "Personalized lifetime album you buy once, with a 15*21 personal photo and a 20*25 class picture. Adding photos every year.",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Lifetime_1.jpeg",
+        "primary": true,
+        "alt": "Lifetime Album"
+      },
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Lifetime_2.jpeg",
+        "primary": false,
+        "alt": "Lifetime Album"
+      },
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Lifetime_3.jpeg",
+        "primary": false,
+        "alt": "Lifetime Album"
+      }
+    ],
+    "price": 700
+  },
+  {
+    "id": 34,
+    "name": "Magnetic Photo",
+    "description": "Two magnetic photos 5*7 cm matte. Larger sizes can be ordered upon request.",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Magnetic_Photo.jpeg",
+        "primary": true,
+        "alt": "Magnetic Photo"
+      }
+    ],
+    "price": 75
+  },
+  {
+    "id": 68,
+    "name": "Print Value Pack",
+    "description": "Printed class and whole school photos 20X30 cm, 2 Portraits 13X18 cm and 8 Personal 4\u00d76 cm photos.",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Value_print.jpg",
+        "primary": true,
+        "alt": "Print Value Pack"
+      }
+    ],
+    "price": 300
+  },
+  {
+    "id": 37,
+    "name": "Printed PVC Portrait Class Book",
+    "description": "Our Class book combines individual and group class photos. PVC material.",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/PVC_1_Gi9ImfT.jpeg",
+        "primary": false,
+        "alt": "Printed PVC Portrait Class Book"
+      },
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/PVC_2_5g5677P.jpeg",
+        "primary": false,
+        "alt": "Printed PVC Portrait Class Book"
+      },
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/PVC_3_ixJHDET.jpeg",
+        "primary": true,
+        "alt": "Printed PVC Portrait Class Book"
+      }
+    ],
+    "price": 350
+  },
+  {
+    "id": 36,
+    "name": "Wooden frame, 2 pictures",
+    "description": "Combines individual and group class photos, can be hung or mounted on a desk",
+    "images": [
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Wooden_1.jpeg",
+        "primary": true,
+        "alt": "Wooden frame, 2 pictures"
+      },
+      {
+        "url": "https://d345xazij6ry2c.cloudfront.net/media/products/Wooden_2.jpeg",
+        "primary": false,
+        "alt": "Wooden frame, 2 pictures"
+      }
+    ],
+    "price": 300
+  }
+]

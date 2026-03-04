@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Memory Keeper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .select-none { -webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none; }
+    img.no-save { pointer-events:none; }
+    @keyframes slideIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+    .animate-slide { animation: slideIn 0.5s ease-out; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+<div id="site-header"></div>
+
+<!-- Page Hero -->
+<section class="max-w-6xl mx-auto mb-8 px-4">
+  <div class="hero-section rounded-3xl p-10 text-center relative">
+    <div class="relative z-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800" style="font-family:'Fredoka',sans-serif;">Our Photography Products</h2>
+      <p class="text-xl text-gray-600" style="font-family:'Fredoka',sans-serif;">Choose the perfect package for your child's memories</p>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto space-y-12 px-4 pb-16">
+
+  <section class="section-card p-8">
+    <!-- Student Profile -->
+    <div id="student-profile" class="mb-8 hidden animate-slide">
+      <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg border border-purple-100">
+        <div class="text-center mb-4">
+          <h3 id="student-name" class="text-2xl font-bold text-gray-800 mb-1"></h3>
+          <p class="text-sm text-gray-600"><i class="fas fa-shopping-bag mr-2 text-purple-600"></i>Shopping for memory packages</p>
+        </div>
+        <div class="flex justify-center mb-6">
+          <div class="relative">
+            <img id="student-img" src="https://d345xazij6ry2c.cloudfront.net/media/products/Digital_Portrait.jpg" alt="Student Photo"
+              class="w-full h-48 rounded-2xl object-cover border-4 border-white shadow-lg ring-2 ring-purple-400 select-none no-save"
+              draggable="false" oncontextmenu="return false;" style="max-width:300px">
+          </div>
+        </div>
+        <div id="class-school-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Your Choices</h2>
+
+    <!-- Products Grid -->
+    <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-full text-center py-8 text-gray-400">
+        <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+        <p>Loading products…</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<!-- Add to Cart Toast -->
+<div id="toast" class="fixed bottom-6 right-6 bg-green-600 text-white px-6 py-3 rounded-xl shadow-xl font-semibold hidden z-50 transition-all">
+  <i class="fas fa-check-circle mr-2"></i><span id="toast-text">Added to cart!</span>
+</div>
+
+<script src="base.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Protect page
+  if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+
+  // Disable right-click on images
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('keydown', e => { if ((e.ctrlKey||e.metaKey) && e.key==='s') e.preventDefault(); });
+
+  loadStudentProfile();
+  loadProducts();
+});
+
+function loadStudentProfile() {
+  const student = Auth.getStudent();
+  if (!student) return;
+
+  document.getElementById('student-name').textContent = student.full_name;
+  document.getElementById('student-profile').classList.remove('hidden');
+
+  // Use flat student fields from STUDENTS config
+  if (student.individual_image) document.getElementById('student-img').src = student.individual_image;
+
+  const grid = document.getElementById('class-school-grid');
+  let html = '';
+  if (true) html += `
+    <div class="bg-white rounded-xl p-4 shadow-md">
+      <img src="https://d345xazij6ry2c.cloudfront.net/media/products/Digital_Class_Photo.jpeg" alt="Class" class="w-full h-48 rounded-lg object-cover select-none no-save mb-3" draggable="false" oncontextmenu="return false;">
+      <p class="text-sm font-semibold text-gray-700 text-center">Class A</p>
+    </div>`;
+  if (true) html += `
+    <div class="bg-white rounded-xl p-4 shadow-md">
+      <img src="https://d345xazij6ry2c.cloudfront.net/media/products/Whole_school.jpeg" alt="School" class="w-full h-48 rounded-lg object-cover select-none no-save mb-3" draggable="false" oncontextmenu="return false;">
+      <p class="text-sm font-semibold text-gray-700 text-center">My School</p>
+    </div>`;
+  grid.innerHTML = html;
+}
+
+async function loadProducts() {
+  const grid = document.getElementById('products-grid');
+  try {
+    const res = await fetch('products.json');
+    const products = await res.json();
+
+    if (!products.length) {
+      grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-600">No products available at the moment.</div>';
+      return;
+    }
+
+    grid.innerHTML = products.map(p => {
+      const imgs = p.images || [];
+      const primary = imgs.find(i => i.primary) || imgs[0];
+      const hasMultiple = imgs.length > 1;
+      const productId = `product-${p.id}`;
+
+      return `
+        <div class="product-card bg-white p-6 rounded-2xl shadow-lg text-center" id="${productId}">
+          ${imgs.length
+            ? `<div class="overflow-hidden rounded-xl mb-4 relative">
+                <div class="carousel-track flex transition-transform duration-500 ease-in-out" data-pid="${p.id}" data-idx="0" style="transform:translateX(0%)">
+                  ${imgs.map(img => `<img src="${img.url}" alt="${img.alt||p.name}" class="min-w-full w-full h-48 object-cover flex-shrink-0" loading="lazy">`).join('')}
+                </div>
+                ${hasMultiple ? `
+                <div class="flex justify-center mt-3 gap-3">
+                  <button class="text-purple-600 hover:text-purple-800 prev-btn" data-pid="${p.id}"><i class="fas fa-chevron-left"></i></button>
+                  <span class="text-sm text-gray-500"><span class="cur-slide" data-pid="${p.id}">1</span>/${imgs.length}</span>
+                  <button class="text-purple-600 hover:text-purple-800 next-btn" data-pid="${p.id}"><i class="fas fa-chevron-right"></i></button>
+                </div>` : '<div class="mb-1"></div>'}
+               </div>`
+            : `<div class="w-full h-48 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl mb-4 flex items-center justify-center"><i class="fas fa-image text-white text-4xl"></i></div>`
+          }
+          <h3 class="text-xl font-semibold mb-2">${p.name}</h3>
+          <p class="text-gray-600 mb-3">${p.description || ''}</p>
+          <p class="text-purple-600 font-bold text-xl mb-4">${p.price} EGP</p>
+          <button onclick='addToCart(${JSON.stringify({id:p.id,name:p.name,price:p.price,image:primary?.url||''})})'
+            class="btn-primary text-white px-6 py-3 rounded-xl font-semibold w-full">
+            <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+          </button>
+        </div>`;
+    }).join('');
+
+    // Carousel listeners
+    document.querySelectorAll('.next-btn').forEach(btn => {
+      btn.addEventListener('click', e => { e.stopPropagation(); slide(btn.dataset.pid, 1); });
+    });
+    document.querySelectorAll('.prev-btn').forEach(btn => {
+      btn.addEventListener('click', e => { e.stopPropagation(); slide(btn.dataset.pid, -1); });
+    });
+
+  } catch(e) {
+    grid.innerHTML = '<div class="col-span-full text-center py-8 text-red-500">Error loading products. Please refresh.</div>';
+  }
+}
+
+function slide(pid, dir) {
+  const track = document.querySelector(`.carousel-track[data-pid="${pid}"]`);
+  if (!track) return;
+  const total = track.children.length;
+  let idx = ((parseInt(track.dataset.idx) + dir) % total + total) % total;
+  track.dataset.idx = idx;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  const counter = document.querySelector(`.cur-slide[data-pid="${pid}"]`);
+  if (counter) counter.textContent = idx + 1;
+}
+
+function addToCart(product) {
+  Cart.add(product);
+  showToast(`"${product.name}" added to cart!`);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = msg;
+  t.classList.remove('hidden');
+  setTimeout(() => t.classList.add('hidden'), 2500);
+}
+</script>
+</body>
+</html>
